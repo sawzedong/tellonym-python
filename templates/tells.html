@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+
+{% if tells %}
+    <br>
+    <strong>NOT SPAM</strong>
+    <br>
+<span>
+{{ nonspam_tells }}
+</span>
+    -------------------------------------
+    <br>
+    <strong>SPAM</strong>
+    <br>
+<span>
+{{ spam_tells }}
+</span>
+    {% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,28 @@
+/*
+#homepageContainer {
+    background-image: url('../img/tellonym-logo.png');
+    background-size: cover;
+    background-position: center center;
+}
+*/
+/*
+.formInput {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
+}
+.formInput:focus, .formInput:hover, .formInput:active {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
+}
+*/
+
+#homepageContainer {
+    background-image: url("../img/gradient-background.jpg");
+    background-size: cover;
+    background-position: left center;
+}
+#formContainer {
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(12px);
+    border-radius: 3px;
+}

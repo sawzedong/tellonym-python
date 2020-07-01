@@ -1,0 +1,50 @@
+{% extends "layout.html" %} {% block content %}
+
+<div class="min-vh-100 row h-100 m-0" id="homepageContainer">
+  <div class="py-4 row mx-auto my-auto col-md-7" id="formContainer">
+    <div class="col-md-10 my-auto mx-auto">
+      <form action="/tells" method="POST">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            class="form-control formInput"
+            id="username"
+            name="username"
+            required
+          />
+          <small id="emailHelp" class="form-text text-muted"
+            >Use your tellonym username.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control formInput"
+            id="password"
+            name="password"
+            required
+          />
+          <small id="emailHelp" class="form-text text-muted"
+            >Use your tellonym password. We promise that your password is not
+            stored.</small
+          >
+        </div>
+        <div class="form-group form-check">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="exampleCheck1"
+            required
+          />
+          <label class="form-check-label" for="exampleCheck1"
+            >Check this box for verification</label
+          >
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

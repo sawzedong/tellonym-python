@@ -1,6 +1,8 @@
 import json
 import requests
 
+UnknownError = Exception('an unknown error has occured, please inform the author of this module')
+
 class Answer:
 
     def __init__(self, client, input):
