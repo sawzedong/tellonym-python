@@ -108,5 +108,7 @@ def test_exception():
     raise ManyWrongCredentials('just testing :)')
 """
 
+heroku = Heroku(app)
+
 if __name__ == "__main__":
     app.run(debug=True)
