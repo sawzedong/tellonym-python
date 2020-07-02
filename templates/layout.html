@@ -22,12 +22,13 @@
       integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
       crossorigin="anonymous"
     ></script>
+    <script src="https://kit.fontawesome.com/791eefedbd.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../static/styles/main.css" />
   </head>
   <body>
     <header class="p-0">
       <nav class="navbar navbar-expand-lg navbar-light bg-light m-0 py-0">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">TellonymFilter</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -46,11 +47,11 @@
               <a class="nav-link" href="{{ url_for('home') }}">Home</a>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="#">See Tells</a>
+            <li class="nav-item {{ display_on_login }}">
+              <a class="nav-link" href="{{ url_for('tellsSignedIn') }}">See Tells</a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item {{ display_on_login }}">
               <a class="nav-link" href="#">Inspect Tells</a>
             </li>
           </ul>

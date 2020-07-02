@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
 from tellonym import Tellonym as tellonymClient
 
 WrongCredentialsError = Exception(
@@ -14,19 +14,56 @@ UnknownError = Exception(
 
 app = Flask(__name__)
 
+client = False
+
 
 @app.route("/")
 def home():
-    return render_template('home.html', home_active="active")
+    global client
+    hideOnLogin = "d-none"
+    displayOnLogin = ""
+    if(not client):
+        hideOnLogin = ""
+        displayOnLogin = "d-none"
+    return render_template('home.html', home_active="active", display_on_login=displayOnLogin, hide_on_login=hideOnLogin)
 
 
 @app.route("/tells", methods=['POST'])
 def tells():
     username = request.form['username']
     password = request.form['password']
+    global client
+    if(not client):
+        client = tellonymClient.Tellonym(username, password)
 
-    client = tellonymClient.Tellonym(username, password)
+    allTells = client.get_tells()
+    nonspam = []
+    spam = []
 
+    for tell in allTells:
+        tellContent = tell.tell
+        if ("Tell" in tellContent or "tell" in tellContent):
+            nonspam.append(tellContent)
+        else:
+            spam.append(tellContent)
+
+    spamReturn = ""
+    nonspamReturn = ""
+
+    for non_tell in nonspam:
+        nonspamReturn += non_tell
+        nonspamReturn += "\n"
+    for spam_tell in spam:
+        spamReturn += spam_tell
+        spamReturn += "\n"
+    return render_template('tells.html', tells=True, nonspam_tells=nonspamReturn, spam_tells=spamReturn)
+
+
+@app.route("/tells")
+def tellsSignedIn():
+    global client
+    if(not client):
+        return redirect('/')
     allTells = client.get_tells()
     nonspam = []
     spam = []
@@ -52,6 +89,7 @@ def tells():
 
 @app.errorhandler(404)
 def page_not_found(e):
+    print(client)
     # note that we set the 404 status explicitly
     return render_template('404.html'), 404
 

@@ -1,0 +1,21 @@
+{
+  "name": "TellonymFilter: Python",
+  "description": "Filters TellonymTells based on user set formats and keywords",
+  "image": "heroku/python",
+  "keywords": ["python", "flask" ],
+  "addons": [ "heroku-postgresql" ],
+  "env": {
+    "SECRET_KEY": {
+      "description": "The secret key for the Django application.",
+      "generator": "secret"
+    }
+  },
+  "environments": {
+    "test": {
+      "scripts": {
+        "test-setup": "python3 main.py collectstatic --noinput",
+        "test": "python3 main.py test"
+      }
+    }
+  }
+}
